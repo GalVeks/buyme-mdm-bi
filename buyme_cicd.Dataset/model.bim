@@ -13,6 +13,10 @@
       {
         "name": "PBI_ProTooling",
         "value": "[\"DevMode\"]"
+      },
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"Sheet1\"]"
       }
     ],
     "culture": "en-US",
@@ -27,6 +31,102 @@
           },
           "contentType": "json"
         }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "he-IL",
+    "tables": [
+      {
+        "name": "Sheet1",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "First name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f9ee2309-e200-4d73-9395-00515319a3f0",
+            "sourceColumn": "First name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Last Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "faa0ef48-228a-4885-8ad9-7d1707fc1e95",
+            "sourceColumn": "Last Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Role",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a2155a5b-3129-4af9-b6e8-6cd5c3ed2402",
+            "sourceColumn": "Role",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "email",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "872075c0-c964-41d3-80e9-d95df5a6e529",
+            "sourceColumn": "email",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "08f8bd75-fcfb-4af9-a736-e5537c1b4386",
+        "partitions": [
+          {
+            "name": "Sheet1-acc7c7ec-c62d-4d8e-b72b-02659652f985",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(\"C:\\Users\\GalV\\Desktop\\Participants List.xlsx\"), null, true),",
+                "    Sheet1_Sheet = Source{[Item=\"Sheet1\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Sheet1_Sheet,{{\"Column1\", type text}, {\"Column2\", type text}, {\"Column3\", type text}, {\"Column4\", type text}}),",
+                "    #\"Filtered Rows\" = Table.SelectRows(#\"Changed Type\", each [Column1] <> null and [Column1] <> \"\"),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Filtered Rows\", [PromoteAllScalars=true]),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"First name\", type text}, {\"Last Name\", type text}, {\"email\", type text}, {\"Role\", type text}})",
+                "in",
+                "    #\"Changed Type1\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
       }
     ]
   }
