@@ -107,6 +107,14 @@
           }
         ],
         "lineageTag": "08f8bd75-fcfb-4af9-a736-e5537c1b4386",
+        "measures": [
+          {
+            "name": "row_count",
+            "expression": "COUNTROWS('Sheet1')",
+            "formatString": "0",
+            "lineageTag": "1ccac2de-90ce-42ae-863e-02c0bab3f913"
+          }
+        ],
         "partitions": [
           {
             "name": "Sheet1-acc7c7ec-c62d-4d8e-b72b-02659652f985",
